@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Game from './game/game';
 
 function App() {
   const [score, setScore] = useState<number>(0);
@@ -11,10 +12,7 @@ function App() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    ctx.beginPath();
-    ctx.arc(200, 200, 50, 0, 2 * Math.PI);
-    ctx.fillStyle = "DodgerBlue";
-    ctx.fill();
+    const game = new Game(ctx);
   }, []);
 
   return (
