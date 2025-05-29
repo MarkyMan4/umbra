@@ -18,6 +18,9 @@ function App() {
   return (
     <div>
       <canvas id="canvas"></canvas>
+      <div id="game-ui">
+        <h1>umbra</h1>
+      </div>
     </div>
   )
 }
