@@ -8,21 +8,31 @@ export default class Player implements GameObject {
 
     public x: number;
     public y: number;
-    private velocity: Vector2;
+    public isMovingUp: boolean;
+    public isMovingRight: boolean;
+    public isMovingDown: boolean;
+    public isMovingLeft: boolean;
 
     constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
-        this.velocity = new Vector2(0, 0);
+        this.isMovingUp = false;
+        this.isMovingRight = false;
+        this.isMovingDown = false;
+        this.isMovingLeft = false;
     }
 
-    public setVelocity(vel: Vector2) {
-        this.velocity = vel;
+    private calculateVelocity(): Vector2 {
+        let xVel = (this.isMovingLeft ? -Player.MOVE_SPEED : 0) + (this.isMovingRight ? Player.MOVE_SPEED : 0);
+        let yVel = (this.isMovingUp ? -Player.MOVE_SPEED : 0) + (this.isMovingDown ? Player.MOVE_SPEED : 0);
+
+        return new Vector2(xVel, yVel);
     }
 
     public update() {
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        let velocity = this.calculateVelocity();
+        this.x += velocity.x;
+        this.y += velocity.y;
     }
 
     public draw(ctx: CanvasRenderingContext2D) {

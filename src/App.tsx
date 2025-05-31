@@ -7,12 +7,12 @@ function App() {
 
   useEffect(() => {
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
-    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const game = new Game(ctx);
+    const game = new Game(canvas);
+    game.run();
   }, []);
 
   return (
