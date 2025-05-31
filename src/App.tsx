@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Game from './game/game';
 
 function App() {
-  const [score, setScore] = useState<number>(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    // const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    const canvas = canvasRef.current;
+    if(canvas === null) return;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -17,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <canvas id="canvas"></canvas>
+      <canvas id="canvas" ref={canvasRef}></canvas>
       <div id="game-ui">
         <h1>umbra</h1>
       </div>
