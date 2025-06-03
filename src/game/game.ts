@@ -9,6 +9,23 @@ export default class Game {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
         this.player = new Player(this.canvas.width / 2, this.canvas.height / 2);
+        this.createEventListeners();
+    }
+
+    private createEventListeners() {
+        window.addEventListener("keydown", (ev: KeyboardEvent) => {
+            if(ev.key === "w") this.player.isMovingUp = true;
+            if(ev.key === "a") this.player.isMovingLeft = true;
+            if(ev.key === "s") this.player.isMovingDown = true;
+            if(ev.key === "d") this.player.isMovingRight = true;
+        });
+
+        window.addEventListener("keyup", (ev: KeyboardEvent) => {
+            if(ev.key === "w") this.player.isMovingUp = false;
+            if(ev.key === "a") this.player.isMovingLeft = false;
+            if(ev.key === "s") this.player.isMovingDown = false;
+            if(ev.key === "d") this.player.isMovingRight = false;
+        });
     }
 
     private update() {

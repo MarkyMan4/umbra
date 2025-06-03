@@ -21,7 +21,7 @@ function App() {
     <div>
       <canvas id="canvas" ref={canvasRef}></canvas>
       <div id="game-ui">
-        <h1>umbra</h1>
+        <h1>pre-alpha</h1>
       </div>
     </div>
   )
