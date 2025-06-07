@@ -1,14 +1,18 @@
+import { ScoreEvent } from "./events";
 import Player from "./gameObjects/player";
 
 export default class Game {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
     private player: Player;
+    private score: number;
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
         this.player = new Player(this.canvas.width / 2, this.canvas.height / 2);
+        this.score = 0;
+
         this.createEventListeners();
     }
 
@@ -18,6 +22,12 @@ export default class Game {
             if(ev.key === "a") this.player.isMovingLeft = true;
             if(ev.key === "s") this.player.isMovingDown = true;
             if(ev.key === "d") this.player.isMovingRight = true;
+
+            if(ev.key === " ") {
+                this.score++;
+                var scoreEvent = new ScoreEvent(this.score);
+                window.dispatchEvent(scoreEvent);
+            }
         });
 
         window.addEventListener("keyup", (ev: KeyboardEvent) => {
