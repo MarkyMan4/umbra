@@ -52,6 +52,6 @@ export default class Game {
         this.draw();
         this.update();
 
-        requestAnimationFrame(this.run.bind(this));
+        window.setTimeout(() => requestAnimationFrame(this.run.bind(this)), 1000 / 60);
     }
 }
