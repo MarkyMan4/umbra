@@ -43,6 +43,12 @@ export default class Game {
     }
 
     private draw() {
+        // draw border
+        this.ctx.beginPath();
+        this.ctx.roundRect(5, 5, this.canvas.width - 10, this.canvas.height - 10, 10);
+        this.ctx.strokeStyle = "MediumSeaGreen";
+        this.ctx.stroke();
+
         this.player.draw(this.ctx);
     }
 
