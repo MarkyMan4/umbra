@@ -18,24 +18,33 @@ export default class Game {
 
     private createEventListeners() {
         window.addEventListener("keydown", (ev: KeyboardEvent) => {
+            // movement
             if(ev.key === "w") this.player.isMovingUp = true;
             if(ev.key === "a") this.player.isMovingLeft = true;
             if(ev.key === "s") this.player.isMovingDown = true;
             if(ev.key === "d") this.player.isMovingRight = true;
 
-            if(ev.key === " ") {
-                this.score++;
-                var scoreEvent = new ScoreEvent(this.score);
-                window.dispatchEvent(scoreEvent);
-            }
+            // shooting
+            if(ev.key === "ArrowUp") this.player.isFiringUp = true;
+            if(ev.key === "ArrowLeft") this.player.isFiringLeft = true;
+            if(ev.key === "ArrowDown") this.player.isFiringDown = true;
+            if(ev.key === "ArrowRight") this.player.isFiringRight = true;
         });
 
         window.addEventListener("keyup", (ev: KeyboardEvent) => {
+            // movement
             if(ev.key === "w") this.player.isMovingUp = false;
             if(ev.key === "a") this.player.isMovingLeft = false;
             if(ev.key === "s") this.player.isMovingDown = false;
             if(ev.key === "d") this.player.isMovingRight = false;
+
+            // shooting
+            if(ev.key === "ArrowUp") this.player.isFiringUp = false;
+            if(ev.key === "ArrowLeft") this.player.isFiringLeft = false;
+            if(ev.key === "ArrowDown") this.player.isFiringDown = false;
+            if(ev.key === "ArrowRight") this.player.isFiringRight = false;
         });
+
     }
 
     private update() {

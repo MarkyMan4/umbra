@@ -8,10 +8,17 @@ export default class Player implements GameObject {
 
     public x: number;
     public y: number;
+
     public isMovingUp: boolean;
     public isMovingRight: boolean;
     public isMovingDown: boolean;
     public isMovingLeft: boolean;
+
+    public isFiringUp: boolean;
+    public isFiringRight: boolean;
+    public isFiringDown: boolean;
+    public isFiringLeft: boolean;
+    public lastShotFired: Date;
 
     constructor(x: number, y: number) {
         this.x = x;
@@ -20,6 +27,11 @@ export default class Player implements GameObject {
         this.isMovingRight = false;
         this.isMovingDown = false;
         this.isMovingLeft = false;
+        this.isFiringUp = false;
+        this.isFiringRight = false;
+        this.isFiringLeft = false;
+        this.isFiringDown = false;
+        this.lastShotFired = new Date();
     }
 
     private calculateVelocity(): Vector2 {
