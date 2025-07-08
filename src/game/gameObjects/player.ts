@@ -1,8 +1,7 @@
-import GameObject from "./objects";
+import IGameObject from "./objects";
 import Vector2 from "../utils/vector";
 
-export default class Player implements GameObject {
-    // @ts-ignore
+export default class Player implements IGameObject {
     private static MOVE_SPEED: number = 5;
     private static RADIUS: number = 30;
 
@@ -14,12 +13,6 @@ export default class Player implements GameObject {
     public isMovingDown: boolean;
     public isMovingLeft: boolean;
 
-    public isFiringUp: boolean;
-    public isFiringRight: boolean;
-    public isFiringDown: boolean;
-    public isFiringLeft: boolean;
-    public lastShotFired: Date;
-
     constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
@@ -27,11 +20,6 @@ export default class Player implements GameObject {
         this.isMovingRight = false;
         this.isMovingDown = false;
         this.isMovingLeft = false;
-        this.isFiringUp = false;
-        this.isFiringRight = false;
-        this.isFiringLeft = false;
-        this.isFiringDown = false;
-        this.lastShotFired = new Date();
     }
 
     private calculateVelocity(): Vector2 {
