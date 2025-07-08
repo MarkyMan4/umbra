@@ -29,10 +29,27 @@ export default class Player implements IGameObject {
         return new Vector2(xVel, yVel);
     }
 
+    private calculateShootingVector(): Vector2 {
+        let shootingVec = new Vector2(0, 0);
+
+        if(this.isFiringUp)
+            shootingVec.y -= 1;
+        if(this.isFiringRight)
+            shootingVec.x += 1;
+        if(this.isFiringLeft)
+            shootingVec.x -= 1;
+        if(this.isFiringDown)
+            shootingVec.y += 1;
+
+        return shootingVec;
+    }
+
     public update() {
         let velocity = this.calculateVelocity();
         this.x += velocity.x;
         this.y += velocity.y;
+
+        // get shooting vector and pass it to a bullet object to update?
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
