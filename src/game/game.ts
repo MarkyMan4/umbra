@@ -15,6 +15,7 @@ export default class Game {
     private playerIsFiringDown: boolean;
     private playerIsFiringLeft: boolean;
     private playerLastShotFired: Date;
+    private playerShotDelay: number = 300;
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
@@ -73,8 +74,13 @@ export default class Game {
         this.player.update();
 
         let firingVec = this.getFiringVector();
-        if(firingVec.x !== 0 || firingVec.y !== 0) {
+        
+        //@ts-ignore
+        let timeSinceLastShot = new Date() - this.playerLastShotFired;
+
+        if((firingVec.x !== 0 || firingVec.y !== 0) && timeSinceLastShot >= this.playerShotDelay) {
             this.playerBullets.push(new Bullet(this.player.x, this.player.y, firingVec));
+            this.playerLastShotFired = new Date();
         }
 
         this.playerBullets.forEach(b => b.update());
